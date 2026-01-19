@@ -60,10 +60,7 @@ export class Address {
   @Column()
   display!: string;
 
-  @Column('geometry', {
-    spatialFeatureType: 'Point',
-    srid: 4326,
-  })
+  @Column('jsonb')
   locationPoint!: AddressLocationPointDto;
 
   static create(data: AddressPartialDto) {
