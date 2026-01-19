@@ -94,7 +94,7 @@ class LambdaFunctionQueue<
 
   async push(payload: T): Promise<void> {
     if (this.environment === Environment.Local) {
-      logger.info(`[Local] Pushing message to queue ${this.lambda}:`, payload);
+      logger.info({ payload }, `[Local] Pushing message to queue ${this.lambda}`);
       await this.lambdaApiClient.request(this.lambda, payload);
       return;
     }
