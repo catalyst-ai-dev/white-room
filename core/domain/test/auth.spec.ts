@@ -2,7 +2,16 @@ import { describe, expect, test, beforeAll } from '@jest/globals';
 import { InvalidCredentialsError, NoUserLoginFoundError } from '@domain/auth/auth.errors';
 import { TestService } from './lib/TestService';
 
-jest.mock('@namespace/logger');
+jest.mock('@namespace/logger', () => ({
+  createLogger: () => ({
+    info: jest.fn(),
+    warn: jest.fn(),
+    error: jest.fn(),
+    debug: jest.fn(),
+    trace: jest.fn(),
+    child: jest.fn().mockReturnThis(),
+  }),
+}));
 
 describe('Auth Service', () => {
   const testService = new TestService({ context: 'domain' });
