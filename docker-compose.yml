@@ -10,6 +10,4 @@ services:
       POSTGRES_DB: ${CORE_DB_NAME}
     ports:
       - ${CORE_DB_PORT}:5432
-    volumes:
-      - ./.docker-db:/docker-entrypoint-initdb.d
 #

@@ -64,18 +64,7 @@ jobs:
 
       - name: Run API DB Migrations
         if: ${{ steps.nx-affected.outputs.api != '' }}
-        run: |
-          # Wait for the Postgres service to be ready
-          until pg_isready -h localhost -p 5432 -U postgres; do
-            echo "Waiting for Postgres..."
-            sleep 1
-          done
-
-          # Create the database
-          PGPASSWORD=postgres psql -h localhost -U postgres -c "CREATE DATABASE namespace_test_api;"
-
-          # Run migrations
-          npx nx run migrations:run --verbose
+        run: npx nx run migrations:run --verbose
         env:
           CORE_DB_HOST: localhost
           CORE_DB_USER: postgres
