@@ -10,6 +10,37 @@ import { createLogger } from '@namespace/logger';
 
 const logger = createLogger('DataSourceManager');
 
+/**
+ * Creates a database if it doesn't exist.
+ * Connects to the default 'postgres' database to run the CREATE DATABASE command.
+ */
+async function ensureDatabaseExists(config: PostgresDatabaseConfig): Promise<void> {
+  const client = new pg.Client({
+    host: config.host,
+    port: config.port,
+    user: config.username,
+    password: config.password,
+    database: 'postgres',
+  });
+
+  try {
+    await client.connect();
+    const result = await client.query(
+      'SELECT 1 FROM pg_database WHERE datname = $1',
+      [config.database]
+    );
+
+    if (result.rowCount === 0) {
+      await client.query(`CREATE DATABASE "${config.database}"`);
+      if (process.env.NODE_ENV !== 'test') {
+        logger.info(`Created database: ${config.database}`);
+      }
+    }
+  } finally {
+    await client.end();
+  }
+}
+
 const {
   CORE_DB_HOST = '127.0.0.1',
   CORE_DB_PORT = '5432',
@@ -198,6 +229,13 @@ export function createDataSource(dataSourceConfig: DatabaseConfig): DataSource {
       database: dataSourceConfig.database,
     };
     dataSource = new DataSource(postgresConfig);
+
+    // Wrap initialize to create database if it doesn't exist
+    const originalInitialize = dataSource.initialize.bind(dataSource);
+    dataSource.initialize = async () => {
+      await ensureDatabaseExists(dataSourceConfig);
+      return originalInitialize();
+    };
 
     // Configure postgres to parse numeric values as floats
     pg.types.setTypeParser(pg.types.builtins.NUMERIC, (val: string) => {
