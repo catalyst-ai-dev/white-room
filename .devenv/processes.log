@@ -1,0 +1,70 @@
+Running tasks     devenv:enterShell
+
+Running           devenv:enterShell
+Succeeded         devenv:enterShell (3.32ms)
+Running           devenv:enterTest
+No command        devenv:enterTest
+1 Skipped, 1 Succeeded
+{"level":"debug","error":"could not locate `process-compose` in any of the following paths: [/workspace/.config /etc/xdg]","time":"2026-01-21T02:17:59Z","message":"Path not found for process compose config home"}
+{"level":"debug","error":"could not locate `process-compose` in any of the following paths: [/workspace/.config /etc/xdg]","time":"2026-01-21T02:17:59Z","message":"Path not found for process compose config home"}
+]0;process-compose: 7a7e20fc15de/repo[postgres	] Running tasks     devenv:processes:postgres
+[postgres	] 
+[postgres	] Running           devenv:processes:postgres
+[postgres	] The files belonging to this database system will be owned by user "workspace".
+[postgres	] This user must also own the server process.
+[postgres	] 
+[postgres	] The database cluster will be initialized with locale "C".
+[postgres	] The default text search configuration will be set to "english".
+[postgres	] 
+[postgres	] Data page checksums are disabled.
+[postgres	] 
+[postgres	] creating directory /workspace/repo/.devenv/state/postgres ... ok
+[postgres	] creating subdirectories ... ok
+[postgres	] selecting dynamic shared memory implementation ... posix
+[postgres	] selecting default max_connections ... 100
+[postgres	] selecting default shared_buffers ... 128MB
+[postgres	] selecting default time zone ... Etc/UTC
+[postgres	] creating configuration files ... ok
+[postgres	] running bootstrap script ... ok
+[postgres	] performing post-bootstrap initialization ... ok
+[postgres	] syncing data to disk ... ok
+[postgres	] 
+[postgres	] 
+[postgres	] Success. You can now start the database server using:
+[postgres	] 
+[postgres	]     pg_ctl -D /workspace/repo/.devenv/state/postgres -l logfile start
+[postgres	] 
+[postgres	] initdb: warning: enabling "trust" authentication for local connections
+[postgres	] initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+[postgres	] 
+[postgres	] PostgreSQL initdb process complete.
+[postgres	] 
+[postgres	] 
+[postgres	] PostgreSQL is setting up the initial database.
+[postgres	] 
+[postgres	] waiting for server to start....2026-01-21 02:17:59.737 GMT [1363] LOG:  starting PostgreSQL 16.11 on aarch64-unknown-linux-gnu, compiled by clang version 20.1.8, 64-bit
+[postgres	] 2026-01-21 02:17:59.738 GMT [1363] LOG:  listening on Unix socket "/tmp/devenv-090e213/postgres/.s.PGSQL.5432"
+[postgres	] 2026-01-21 02:17:59.740 GMT [1366] LOG:  database system was shut down at 2026-01-21 02:17:59 GMT
+[postgres	] 2026-01-21 02:17:59.742 GMT [1363] LOG:  database system is ready to accept connections
+[postgres	]  done
+[postgres	] server started
+[postgres	] Checking presence of database: namespace_dev
+[postgres	] 0
+[postgres	] Creating database: namespace_dev
+[postgres	] CREATE DATABASE
+[postgres	] Running initial SQL on database namespace_dev
+[postgres	] CREATE EXTENSION
+[postgres	] CREATE EXTENSION
+[postgres	] waiting for server to shut down....2026-01-21 02:18:00.015 GMT [1363] LOG:  received fast shutdown request
+[postgres	] 2026-01-21 02:18:00.016 GMT [1363] LOG:  aborting any active transactions
+[postgres	] 2026-01-21 02:18:00.017 GMT [1363] LOG:  background worker "logical replication launcher" (PID 1369) exited with exit code 1
+[postgres	] 2026-01-21 02:18:00.020 GMT [1364] LOG:  shutting down
+[postgres	] 2026-01-21 02:18:00.020 GMT [1364] LOG:  checkpoint starting: shutdown immediate
+[postgres	] 2026-01-21 02:18:00.062 GMT [1364] LOG:  checkpoint complete: wrote 2177 buffers (6.6%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.009 s, sync=0.031 s, total=0.043 s; sync files=434, longest=0.014 s, average=0.001 s; distance=14808 kB, estimate=14808 kB; lsn=0/2368348, redo lsn=0/2368348
+[postgres	] 2026-01-21 02:18:00.065 GMT [1363] LOG:  database system is shut down
+[postgres	]  done
+[postgres	] server stopped
+[postgres	] 2026-01-21 02:18:00.129 GMT [1343] LOG:  starting PostgreSQL 16.11 on aarch64-unknown-linux-gnu, compiled by clang version 20.1.8, 64-bit
+[postgres	] 2026-01-21 02:18:00.129 GMT [1343] LOG:  listening on Unix socket "/tmp/devenv-090e213/postgres/.s.PGSQL.5432"
+[postgres	] 2026-01-21 02:18:00.132 GMT [1388] LOG:  database system was shut down at 2026-01-21 02:18:00 GMT
+[postgres	] 2026-01-21 02:18:00.134 GMT [1343] LOG:  database system is ready to accept connections
