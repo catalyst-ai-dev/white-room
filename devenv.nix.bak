@@ -24,6 +24,7 @@
   # PostgreSQL with PostGIS for geographic data
   services.postgres = {
     enable = true;
+    listen_addresses = "127.0.0.1";
     package = pkgs.postgresql_16;
 
     # PostGIS extension for geographic queries (locationPoint in Address entity)
