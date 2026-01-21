@@ -1,0 +1,41 @@
+{"level":"error","process":"postgres","replica":0,"message":"Running tasks     devenv:processes:postgres"}
+{"level":"error","process":"postgres","replica":0}
+{"level":"error","process":"postgres","replica":0,"message":"Running           devenv:processes:postgres"}
+{"level":"info","process":"postgres","replica":0,"message":"The files belonging to this database system will be owned by user \"workspace\"."}
+{"level":"info","process":"postgres","replica":0,"message":"This user must also own the server process."}
+{"level":"info","process":"postgres","replica":0}
+{"level":"info","process":"postgres","replica":0,"message":"The database cluster will be initialized with locale \"C\"."}
+{"level":"info","process":"postgres","replica":0,"message":"The default text search configuration will be set to \"english\"."}
+{"level":"info","process":"postgres","replica":0}
+{"level":"info","process":"postgres","replica":0,"message":"Data page checksums are disabled."}
+{"level":"info","process":"postgres","replica":0}
+{"level":"info","process":"postgres","replica":0,"message":"creating directory /workspace/repo/.devenv/state/postgres ... ok"}
+{"level":"info","process":"postgres","replica":0,"message":"creating subdirectories ... ok"}
+{"level":"info","process":"postgres","replica":0,"message":"selecting dynamic shared memory implementation ... posix"}
+{"level":"info","process":"postgres","replica":0,"message":"selecting default max_connections ... 100"}
+{"level":"info","process":"postgres","replica":0,"message":"selecting default shared_buffers ... 128MB"}
+{"level":"info","process":"postgres","replica":0,"message":"selecting default time zone ... Etc/UTC"}
+{"level":"info","process":"postgres","replica":0,"message":"creating configuration files ... ok"}
+{"level":"info","process":"postgres","replica":0,"message":"running bootstrap script ... ok"}
+{"level":"info","process":"postgres","replica":0,"message":"performing post-bootstrap initialization ... ok"}
+{"level":"info","process":"postgres","replica":0,"message":"syncing data to disk ... ok"}
+{"level":"error","process":"postgres","replica":0,"message":"initdb: warning: enabling \"trust\" authentication for local connections"}
+{"level":"info","process":"postgres","replica":0}
+{"level":"info","process":"postgres","replica":0}
+{"level":"info","process":"postgres","replica":0,"message":"Success. You can now start the database server using:"}
+{"level":"info","process":"postgres","replica":0}
+{"level":"info","process":"postgres","replica":0,"message":"    pg_ctl -D /workspace/repo/.devenv/state/postgres -l logfile start"}
+{"level":"info","process":"postgres","replica":0}
+{"level":"error","process":"postgres","replica":0,"message":"initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb."}
+{"level":"info","process":"postgres","replica":0}
+{"level":"info","process":"postgres","replica":0,"message":"PostgreSQL initdb process complete."}
+{"level":"info","process":"postgres","replica":0}
+{"level":"info","process":"postgres","replica":0}
+{"level":"info","process":"postgres","replica":0,"message":"PostgreSQL is setting up the initial database."}
+{"level":"info","process":"postgres","replica":0}
+{"level":"info","process":"postgres","replica":0,"message":"waiting for server to start....2026-01-21 01:23:34.243 GMT [1335] LOG:  starting PostgreSQL 16.11 on aarch64-unknown-linux-gnu, compiled by clang version 20.1.8, 64-bit"}
+{"level":"info","process":"postgres","replica":0,"message":"2026-01-21 01:23:34.243 GMT [1335] LOG:  listening on Unix socket \"/tmp/devenv-090e213/postgres/.s.PGSQL.5432\""}
+{"level":"info","process":"postgres","replica":0,"message":"2026-01-21 01:23:34.245 GMT [1338] LOG:  database system was shut down at 2026-01-21 01:23:34 GMT"}
+{"level":"info","process":"postgres","replica":0,"message":"2026-01-21 01:23:34.247 GMT [1335] LOG:  database system is ready to accept connections"}
+{"level":"info","process":"postgres","replica":0,"message":" done"}
+{"level":"info","process":"postgres","replica":0,"message":"se
