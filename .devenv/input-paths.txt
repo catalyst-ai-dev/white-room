@@ -1,0 +1,7 @@
+/workspace/repo/.devenv/flake.json
+/workspace/repo/.devenv.flake.nix
+/workspace/repo/.env
+/workspace/repo/devenv.local.nix
+/workspace/repo/devenv.lock
+/workspace/repo/devenv.nix
+/workspace/repo/devenv.yaml
