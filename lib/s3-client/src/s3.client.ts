@@ -80,7 +80,7 @@ export async function downloadStream(args: DownloadStreamArgs) {
     Key: sourceFilePath,
   });
 
-  logger.debug('Downloading file from S3 bucket as a ReadableStream', { args });
+  logger.debug({ args }, 'Downloading file from S3 bucket as a ReadableStream');
 
   const response = await s3Client.send(command);
   if (!response.Body || !('pipe' in response.Body)) {
@@ -147,7 +147,7 @@ export function downloadAsBuffer(args: DownloadBufferArgs): Promise<Buffer> {
         Key: sourceFilePath,
       });
 
-      logger.debug('Downloading file from S3 bucket ', { args });
+      logger.debug({ args }, 'Downloading file from S3 bucket');
 
       s3Client
         .send(command)
@@ -195,7 +195,7 @@ export async function uploadToS3(args: UploadToS3Args): Promise<string> {
     ContentDisposition: contentDisposition || undefined,
   });
 
-  logger.debug('Uploading file to S3 bucket', { args });
+  logger.debug({ args }, 'Uploading file to S3 bucket');
 
   await s3Client.send(command);
 
@@ -204,7 +204,7 @@ export async function uploadToS3(args: UploadToS3Args): Promise<string> {
       await fs.promises.access(sourceFilePath);
       await fs.promises.unlink(sourceFilePath);
     } catch (error) {
-      logger.warn('Failed to delete source file - file may not exist', { sourceFilePath, error });
+      logger.warn({ sourceFilePath, error }, 'Failed to delete source file - file may not exist');
     }
   }
 
@@ -220,10 +220,7 @@ export async function uploadToSignedS3ObjectUrl({
   s3PutObjectUrl,
   localFilePath,
 }: SignedUrlUploadArgs) {
-  logger.debug('[uploadToSignedS3ObjectUrl] Uploading file to Signed S3 Object URL', {
-    s3PutObjectUrl,
-    localFilePath,
-  });
+  logger.debug({ s3PutObjectUrl, localFilePath }, '[uploadToSignedS3ObjectUrl] Uploading file to Signed S3 Object URL');
 
   const fileBuffer = await fs.promises.readFile(localFilePath);
   const queryString = s3PutObjectUrl.split('?')[1];
@@ -259,13 +256,13 @@ export async function removeFromS3(args: RemoveFromS3Args): Promise<string> {
     Key: targetFilePath,
   });
 
-  logger.debug('Removing file from S3 bucket', { args });
+  logger.debug({ args }, 'Removing file from S3 bucket');
 
   await s3Client.send(command);
 
   const removedFileUrl = `${s3BucketUrl}/${targetFilePath}`;
 
-  logger.debug('Removed file', removedFileUrl);
+  logger.debug({ removedFileUrl }, 'Removed file');
 
   return removedFileUrl;
 }
@@ -305,7 +302,7 @@ export async function listObjectsInBucket({ bucketName, prefix }: ListObjectsArg
     Prefix: prefix || '',
   });
 
-  logger.debug('Listing objects in S3 bucket', { prefix });
+  logger.debug({ prefix }, 'Listing objects in S3 bucket');
 
   const response = await s3Client.send(command);
 
