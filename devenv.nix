@@ -1,0 +1,111 @@
+# catalyst-white-room devenv configuration
+#
+# This file declares the development dependencies for the catalyst-white-room project.
+# When an agent-runtime provisions for this repository, it will automatically
+# detect this file and start the configured services.
+#
+# Usage:
+#   - With devenv CLI: `devenv up` to start services, `devenv shell` for environment
+#   - With Catalyst: Services start automatically when the runtime provisions
+#
+# Services provided:
+#   - PostgreSQL 16 with PostGIS extension (port 5432)
+#
+# Environment variables set:
+#   - DATABASE_URL: Connection string for TypeORM/Prisma
+#   - CORE_DB_HOST, CORE_DB_PORT, CORE_DB_USER, CORE_DB_PASSWORD, CORE_DB_NAME
+#
+{ pkgs, lib, config, ... }:
+
+{
+  # Node.js environment (reads .nvmrc automatically via mise in agent-runtime)
+  # languages.javascript.enable = true;
+
+  # PostgreSQL with PostGIS for geographic data
+  services.postgres = {
+    enable = true;
+    package = pkgs.postgresql_16;
+
+    # PostGIS extension for geographic queries (locationPoint in Address entity)
+    extensions = extensions: [
+      extensions.postgis
+    ];
+
+    # Initial database setup
+    initialDatabases = [
+      { name = "namespace_dev"; }
+    ];
+
+    # Create PostGIS extension in the database
+    initialScript = ''
+      CREATE EXTENSION IF NOT EXISTS postgis;
+      CREATE EXTENSION IF NOT EXISTS postgis_topology;
+    '';
+
+    settings = {
+      # Performance tuning for development
+      shared_buffers = "256MB";
+      effective_cache_size = "1GB";
+      maintenance_work_mem = "128MB";
+      work_mem = "16MB";
+
+      # Logging
+      log_statement = "none";
+      log_min_duration_statement = 1000;
+    };
+  };
+
+  # Environment variables for the application
+  # These match the expected variables from .env.default
+  env = {
+    # Database connection
+    CORE_DB_HOST = "127.0.0.1";
+    CORE_DB_PORT = "5432";
+    CORE_DB_USER = "postgres";
+    CORE_DB_PASSWORD = "postgres";
+    CORE_DB_NAME = "namespace_dev";
+    CORE_DB_SYNCHRONIZE = "true";
+    DB_DISABLE_SSL = "true";
+
+    # Standard DATABASE_URL for ORMs
+    DATABASE_URL = "postgresql://postgres:postgres@127.0.0.1:5432/namespace_dev";
+
+    # Disable ORM logging by default (can be noisy during development)
+    ORM_LOGGING = "false";
+  };
+
+  # Scripts available in the shell
+  scripts = {
+    # Reset the database (drop and recreate)
+    db-reset.exec = ''
+      dropdb --if-exists namespace_dev
+      createdb namespace_dev
+      psql -d namespace_dev -c "CREATE EXTENSION IF NOT EXISTS postgis;"
+      psql -d namespace_dev -c "CREATE EXTENSION IF NOT EXISTS postgis_topology;"
+      echo "Database reset complete"
+    '';
+
+    # Check PostGIS version
+    postgis-version.exec = ''
+      psql -d namespace_dev -c "SELECT PostGIS_Version();"
+    '';
+
+    # Run migrations
+    db-migrate.exec = ''
+      npm run migration:run
+    '';
+  };
+
+  # Pre-commit hooks (optional, can be enabled if needed)
+  # pre-commit.hooks = {
+  #   prettier.enable = true;
+  #   eslint.enable = true;
+  # };
+
+  # Process management (services are managed by process-compose under the hood)
+  # Additional processes can be defined here if needed
+  # processes = {
+  #   api.exec = "npm run dev:api";
+  #   web.exec = "npm run dev:web";
+  # };
+}

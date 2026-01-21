@@ -25,11 +25,11 @@ export default function useAllowedRoles({
     if (isLoading) {
       return;
     }
-    const isAllowed = roles.some((role) => user?.roles.includes(role));
+    const isAllowed = roles.some((role) => user?.roles?.includes(role));
     if (!isAllowed) {
       if (user) {
         logger.info(
-          `Current user roles "${user.roles.join(', ')}" not allowed, redirecting to ${redirectUrl}`,
+          `Current user roles "${user.roles?.join(', ') ?? ''}" not allowed, redirecting to ${redirectUrl}`,
         );
       } else {
         logger.info(`User not logged in, redirecting to ${redirectUrl}`);

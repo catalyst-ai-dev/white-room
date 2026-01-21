@@ -36,7 +36,7 @@ const NavbarConnected = () => {
 
   const dropdownMenu = !user
     ? anonymousMenu
-    : user.roles.includes(UserRole.Admin)
+    : user.roles?.includes(UserRole.Admin)
       ? adminMenu
       : loggedInMenu;
   return (
