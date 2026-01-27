@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import { LambdaModule } from './lambda/lambda.module';
 import { DataTableModule } from './dataTable/dataTable.module';
 import { AuthModule } from './auth/auth.module';
+import { CollaborationModule } from './collaboration/collaboration.module';
 import { EventBus } from './lib/EventBus';
 
 /**
@@ -28,6 +29,7 @@ export class DomainModule {
   public readonly lambda: LambdaModule;
   public readonly dataTable: DataTableModule;
   public readonly auth: AuthModule;
+  public readonly collaboration: CollaborationModule;
 
   constructor(dataSource: DataSource, eventBus: IEventBus = new EventBus()) {
     this.dataSource = dataSource;
@@ -38,5 +40,6 @@ export class DomainModule {
     this.lambda = new LambdaModule(this.dataSource);
     this.dataTable = new DataTableModule(this.dataSource);
     this.auth = new AuthModule(this.user.userService);
+    this.collaboration = new CollaborationModule();
   }
 }
