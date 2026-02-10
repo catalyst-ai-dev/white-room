@@ -1,6 +1,5 @@
 {
-  "name": "@namespace/source",
-  "version": "0.0.9",
+  \"name\": \"@namespace/source\",\n  \"version\": \"0.0.9\",
   "license": "MIT",
   "private": false,
   "scripts": {

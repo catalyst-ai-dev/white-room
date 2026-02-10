@@ -10,10 +10,7 @@ const HomePage = () => {
   });
   return (
     <>
-      <Helmet>
-        <title>WEB_TITLE</title>
-      </Helmet>
-      <h1 className="mb-6 mt-4 text-xl font-semibold text-[#132630] sm:text-2xl">Grass-roots secondary matrix</h1>
+      <Helmet>\n        <title>WEB_TITLE</title>\n      </Helmet>\n      <h1 className=\"mb-6 mt-4 text-xl font-semibold text-[#132630] sm:text-2xl\">Grass-roots secondary matrix</h1>
     </>
   );
 };
