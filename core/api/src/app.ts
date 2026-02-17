@@ -67,6 +67,15 @@ export function app(fastify: FastifyInstance, opts: AppOptions) {
       return { status: 'ok' };
     },
   });
+
+  // Testing route
+  fastify.route({
+    method: 'GET',
+    url: '/testing-m8ks',
+    handler: () => {
+      return { ok: true };
+    },
+  });
 }
 
 /**
