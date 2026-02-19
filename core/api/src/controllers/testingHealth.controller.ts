@@ -5,7 +5,7 @@ import { TestingHealthResponseSchema } from '../schemas/testingHealth.schemas';
 export default function TestingHealthController(fastify: FastifyInstance) {
   fastify.route({
     method: 'GET',
-    url: '/testing-health',
+    url: '/testing-hello-123',
     schema: {
       response: {
         200: zodToJsonSchema(TestingHealthResponseSchema),

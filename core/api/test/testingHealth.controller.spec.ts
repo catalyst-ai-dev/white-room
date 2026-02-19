@@ -11,9 +11,9 @@ describe('Testing Health', () => {
     await testService.closeServer();
   });
 
-  test('GET /testing-health returns { ok: true }', async () => {
+  test('GET /testing-hello-123 returns { ok: true }', async () => {
     const result = await testService.get({
-      path: '/testing-health',
+      path: '/testing-hello-123',
       expectedCode: 200,
     });
     expect(result).toEqual({ ok: true });
