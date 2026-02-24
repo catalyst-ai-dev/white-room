@@ -46,7 +46,7 @@ describe('isValidSnowflakeId', () => {
   });
 
   test('should return false for null or undefined', () => {
-    expect(isValidSnowflakeId(null as any)).toBe(false);
-    expect(isValidSnowflakeId(undefined as any)).toBe(false);
+    expect(isValidSnowflakeId(null as any)).toBe(false); // eslint-disable-line @typescript-eslint/no-explicit-any
+    expect(isValidSnowflakeId(undefined as any)).toBe(false); // eslint-disable-line @typescript-eslint/no-explicit-any
   });
 });
