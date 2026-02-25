@@ -13,7 +13,7 @@ const HomePage = () => {
       <Helmet>
         <title>WEB_TITLE</title>
       </Helmet>
-      <h1 className="mb-6 mt-4 text-xl font-semibold text-[#132630] sm:text-2xl">Virtual motivating firmware</h1>
+      <h1 className="mb-6 mt-4 text-xl font-semibold text-[#132630] sm:text-2xl">Adaptive logistical solution</h1>
     </>
   );
 };
