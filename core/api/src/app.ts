@@ -58,24 +58,6 @@ export function app(fastify: FastifyInstance, opts: AppOptions) {
 
   // Load Swagger Docs UIs
   fastify.register(webSwaggerUiPlugin);
-
-  // Health route
-  fastify.route({
-    method: 'GET',
-    url: '/health',
-    handler: () => {
-      return { status: 'ok' };
-    },
-  });
-
-  // Testing health route
-  fastify.route({
-    method: 'GET',
-    url: '/testing-health',
-    handler: () => {
-      return { ok: true };
-    },
-  });
 }
 
 /**
